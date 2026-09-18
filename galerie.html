@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Musée Frutiger - Galerie</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-window">
+      <!-- En-tête -->
+      <header class="app-header">
+        <img src="img/logo.png" alt="Logo" class="header-logo" />
+        <div class="header-text">
+          <h1>The Frutiger Museum</h1>
+          <p>
+            Découvrez les styles, les musiques, et bien plus des années 2000 !
+          </p>
+        </div>
+      </header>
+
+      <!-- Corps -->
+      <div class="app-body">
+        <!-- Barre latérale -->
+        <aside class="app-sidebar">
+          <div class="nav-group">
+            <h3 class="nav-category">Navigation</h3>
+            <ul class="nav-links">
+                <li>
+                <a href="index.html"
+                  ><span class="icon">🌐</span>Introduction</a>
+              </li>
+              <li>
+                <a href="styles.html"><span class="icon">🖼️</span> Les Styles</a>
+              </li>
+              <li>
+                <a href="galerie.html" class="active"
+                  ><span class="icon">📁</span> Galerie</a
+                >
+              </li>
+              <li>
+                <a href="musique.html"><span class="icon">🎵</span> Musique</a>
+              </li>
+              <li>
+                <a href="influence.html"
+                  ><span class="icon">🌐</span> L'Influence</a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+
+        <!-- Contenu principal (Galerie) -->
+        <main class="app-content">
+          <div class="content-banner">
+            <h2>Galerie Visuelle</h2>
+            <p>Naviguez à travers les archives avec l'effet Cover Flow.</p>
+          </div>
+
+          <div class="content-text-box">
+            <div class="cover-flow-container">
+              <div class="cover-flow-track">
+                <div class="cover-flow-item active">
+                  <img src="images/gallery-01.png" alt="Exemple 1" />
+                </div>
+                <div class="cover-flow-item">
+                  <img src="images/gallery-02.png" alt="Exemple 2" />
+                </div>
+                <div class="cover-flow-item">
+                  <img src="images/gallery-03.png" alt="Exemple 3" />
+                </div>
+                <div class="cover-flow-item">
+                  <img src="images/gallery-04.png" alt="Exemple 4" />
+                </div>
+                <div class="cover-flow-item">
+                  <img src="images/gallery-05.png" alt="Exemple 5" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- Script du Cover Flow -->
+    <script>
+      const galleryContainer = document.querySelector(".cover-flow-container");
+      const galleryItems = document.querySelectorAll(".cover-flow-item");
+
+      const activateCenterItem = () => {
+        const containerRect = galleryContainer.getBoundingClientRect();
+        const containerCenterX = containerRect.width / 2;
+
+        galleryItems.forEach((item) => {
+          const itemRect = item.getBoundingClientRect();
+          const itemCenter =
+            itemRect.left - containerRect.left + itemRect.width / 2;
+          const distance = Math.abs(itemCenter - containerCenterX);
+
+          if (distance < 150) {
+            item.classList.add("active");
+          } else {
+            item.classList.remove("active");
+          }
+        });
+      };
+
+      activateCenterItem();
+      galleryContainer.addEventListener("scroll", activateCenterItem);
+    </script>
+  </body>
+</html>

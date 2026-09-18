@@ -1,0 +1,314 @@
+/* --- VARIABLES ET RÉINITIALISATION --- */
+:root {
+    --dark-glass: rgba(89, 155, 231, 0.75);
+    --darker-glass: rgba(63, 77, 204, 0.6);
+    --green-accent: #00c3ff; /* Vert fluo style Matrix/Aero */
+    --text-light: #e0e0e0;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    
+    /* Image de fond : Herbe verte typique */
+    background: url('https://i.pinimg.com/736x/c3/80/d9/c380d9fc09db60210b7de127c9bd4131.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: var(--text-light);
+    
+    /* Centre la fenêtre au milieu de l'écran */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* --- LA FENÊTRE CENTRALE (APP WINDOW) --- */
+.app-window {
+    width: 90vw;
+    max-width: 1000px;
+    height: 85vh;
+    
+    /* Style Dark Aero */
+    background: linear-gradient(to bottom, rgba(20, 70, 209, 0.616) 0%, rgba(96, 182, 231, 0.493) 100%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    /* Bordures brillantes */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.3);
+    
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Empêche le contenu de déborder des coins arrondis */
+}
+
+/* --- EN-TÊTE DE LA FENÊTRE --- */
+.app-header {
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    background: linear-gradient(to bottom, rgba(170, 224, 255, 0.15) 0%, rgba(30, 173, 216, 0.3) 100%);
+    border-bottom: 1px solid rgba(136, 146, 233, 0.8);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.header-logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+.header-text h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+.header-text p {
+    margin: 5px 0 0 0;
+    font-size: 0.9rem;
+    color: #a0a0a0;
+}
+
+/* --- CORPS DE LA FENÊTRE (FLEXBOX) --- */
+.app-body {
+    display: flex;
+    flex: 1;
+    overflow: hidden; /* Gère le scroll interne */
+}
+
+/* --- BARRE LATÉRALE GAUCHE --- */
+.app-sidebar {
+    width: 220px;
+    background: rgba(0, 0, 0, 0.4);
+    border-right: 1px solid rgba(255,255,255,0.1);
+    box-shadow: inset -2px 0 5px rgba(0,0,0,0.3);
+    overflow-y: auto;
+    padding: 10px;
+}
+
+/* Catégories de navigation */
+.nav-category {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    background: linear-gradient(to bottom, #131c6d 0%, #3054b9 100%);
+    color: white;
+    padding: 5px 10px;
+    margin: 10px 0 5px 0;
+    border: 1px solid rgba(0,0,0,0.8);
+    border-top: 1px solid rgba(255,255,255,0.2);
+    border-radius: 3px;
+}
+
+/* --- LIENS DE NAVIGATION (EFFET GLOSSY TRANSPARENT) --- */
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links li {
+    margin-bottom: 8px;
+}
+
+.nav-links li a {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: bold;
+    border-radius: 6px;
+    
+    /* Dégradé beaucoup plus transparent (opacité entre 0.15 et 0.4) */
+    background: linear-gradient(
+        to bottom, 
+        rgba(255, 255, 255, 0.15) 0%,   /* Reflet clair en haut */
+        rgba(255, 255, 255, 0.05) 49%,  /* S'estompe vers le milieu */
+        rgba(0, 0, 0, 0.3) 50%,         /* Cassure sombre (verre) */
+        rgba(0, 0, 0, 0.4) 100%         /* Base sombre */
+    );
+    
+    /* Bordure semi-transparente pour fusionner avec le fond */
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    
+    /* Ligne blanche très fine en haut pour accrocher la lumière */
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.2), 
+        0 2px 4px rgba(0, 0, 0, 0.3);
+        
+    text-shadow: 1px 1px 2px black;
+    transition: all 0.2s ease;
+}
+
+.nav-links li a .icon {
+    margin-right: 10px;
+    font-size: 1.2rem;
+    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.6)); 
+}
+
+/* Effet au survol : on augmente très légèrement l'opacité pour le rendre cliquable */
+.nav-links li a:hover {
+    background: linear-gradient(
+        to bottom, 
+        rgba(255, 255, 255, 0.25) 0%, 
+        rgba(255, 255, 255, 0.1) 49%, 
+        rgba(0, 0, 0, 0.4) 50%, 
+        rgba(0, 0, 0, 0.5) 100%
+    );
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.4), 
+        0 2px 4px rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+/* Effet actif (la page où l'on se trouve) */
+.nav-links li a.active {
+    border: 1px solid rgba(20, 208, 255, 0.6); /* Bordure verte transparente */
+    color: var(--green-accent);
+    
+    /* On ajoute une lueur verte à l'intérieur du verre */
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 0 15px rgba(20, 200, 255, 0.2), 
+        0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* --- CONTENU PRINCIPAL (DROITE) --- */
+.app-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: var(--darker-glass);
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+}
+
+/* Custom Scrollbar style Windows Vista */
+.app-content::-webkit-scrollbar, .app-sidebar::-webkit-scrollbar {
+    width: 10px;
+}
+.app-content::-webkit-scrollbar-track, .app-sidebar::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.3);
+}
+.app-content::-webkit-scrollbar-thumb, .app-sidebar::-webkit-scrollbar-thumb {
+    background: linear-gradient(to right, #555, #333);
+    border: 1px solid #111;
+    border-radius: 5px;
+}
+
+/* --- ÉLÉMENTS DU CONTENU --- */
+.content-banner {
+    background: url('https://i.pinimg.com/736x/c3/80/d9/c380d9fc09db60210b7de127c9bd4131.jpg') no-repeat center center;
+    background-size: cover;
+    border-radius: 10px;
+    padding: 40px 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255,255,255,0.3);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    position: relative;
+}
+
+/* Un filtre assombrissant sur la bannière pour lire le texte */
+.content-banner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.4);
+    border-radius: 10px;
+}
+
+.content-banner h2, .content-banner p {
+    position: relative; /* Pour passer au dessus du filtre noir */
+    margin: 0;
+    color: white;
+    text-shadow: 0 2px 5px black;
+}
+
+/* La zone de texte style terminal/encadré vert */
+.content-text-box {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid #333;
+    border-top: 1px solid #555;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.card {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed rgba(255,255,255,0.1);
+}
+
+.card:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.card h3 {
+    margin-top: 0;
+    color: var(--green-accent); /* Titres en vert fluo */
+    font-size: 1.1rem;
+}
+
+.card p {
+    margin: 0;
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+/* --- GALERIE COVER FLOW (Pour la page galerie.html) --- */
+.cover-flow-container {
+    padding: 20px 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    perspective: 1500px;
+    display: flex;
+    justify-content: center;
+}
+
+.cover-flow-container::-webkit-scrollbar { 
+    display: none; 
+}
+
+.cover-flow-track {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.cover-flow-item {
+    flex: 0 0 300px;
+    height: 220px; /* Taille légèrement ajustée pour bien rentrer dans la fenêtre */
+    border-radius: 10px;
+    overflow: hidden;
+    scroll-snap-align: center;
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), filter 0.5s ease;
+    transform-style: preserve-3d;
+    transform: scale(0.8) rotateY(15deg);
+    filter: brightness(0.6) blur(2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.cover-flow-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.cover-flow-item.active {
+    transform: scale(1) rotateY(0deg);
+    filter: brightness(1) blur(0px);
+    z-index: 10;
+    border: 2px solid var(--green-accent); /* Bordure verte pour s'adapter au thème Dark Aero */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9);
+}

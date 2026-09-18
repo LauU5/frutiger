@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Musée Frutiger - Galerie</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-window">
+      <!-- En-tête -->
+      <header class="app-header">
+        <img src="img/logo.png" alt="Logo" class="header-logo" />
+        <div class="header-text">
+          <h1>The Frutiger Museum</h1>
+          <p>
+            Découvrez les styles, les musiques, et bien plus des années 2000 !
+          </p>
+        </div>
+      </header>
+
+      <!-- Corps -->
+      <div class="app-body">
+        <!-- Barre latérale -->
+        <aside class="app-sidebar">
+          <div class="nav-group">
+            <h3 class="nav-category">Navigation</h3>
+            <ul class="nav-links">
+                <li>
+                <a href="index.html"
+                  ><span class="icon">🌐</span>Introduction</a>
+              </li>
+              <li>
+                <a href="styles.html"><span class="icon">🖼️</span> Les Styles</a>
+              </li>
+              <li>
+                <a href="galerie.html"
+                  ><span class="icon">📁</span> Galerie</a
+                >
+              </li>
+              <li>
+                <a href="musique.html" class="active"><span class="icon">🎵</span> Musique</a>
+              </li>
+              <li>
+                <a href="influence.html"
+                  ><span class="icon">🌐</span> L'Influence</a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+
+        <!-- Contenu principal (Musique) -->
+        <main class="app-content">
+          <div class="content-banner">
+            <h2>Ambiance Sonore</h2>
+            <p>Écoutez les sons qui ont défini cette ère technologique.</p>
+          </div>
+
+          <div class="content-text-box">
+            <div class="card">
+              <h3>🎵 Frutiger Aero Vibes</h3>
+              <iframe
+                data-testid="embed-iframe"
+                style="border-radius: 12px"
+                src="https://open.spotify.com/embed/album/07NVjt98kIbx7SKynHNrFr?utm_source=generator&si=f9a19fbdc1c94b6a"
+                width="100%"
+                height="352"
+                frameborder="0"
+                allowfullscreen=""
+                allow="
+                  autoplay;
+                  clipboard-write;
+                  encrypted-media;
+                  fullscreen;
+                  picture-in-picture;
+                "
+                loading="lazy"
+              ></iframe>
+            </div>
+            <div class="card">
+              <h3>🎮 Nintendo / Wii Nostalgia</h3>
+              <iframe
+                data-testid="embed-iframe"
+                style="border-radius: 12px"
+                src="https://open.spotify.com/embed/album/07NVjt98kIbx7SKynHNrFr?utm_source=generator&si=f9a19fbdc1c94b6a"
+                width="100%"
+                height="352"
+                frameborder="0"
+                allowfullscreen=""
+                allow="
+                  autoplay;
+                  clipboard-write;
+                  encrypted-media;
+                  fullscreen;
+                  picture-in-picture;
+                "
+                loading="lazy"
+              ></iframe>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
